@@ -1,9 +1,9 @@
 // Initialisation des carrousels Swiper
 function initSwipers() {
-    // Carrousel des commentaires écrits
+    // Carrousel des commentaires
     const commentsSwiper = new Swiper('.commentsSwiper', {
         slidesPerView: 1,
-        spaceBetween: 30,
+        spaceBetween: 20,
         loop: true,
         autoplay: {
             delay: 5000,
@@ -16,9 +16,11 @@ function initSwipers() {
         breakpoints: {
             768: {
                 slidesPerView: 2,
+                spaceBetween: 30,
             },
             1024: {
                 slidesPerView: 3,
+                spaceBetween: 30,
             }
         }
     });
@@ -26,7 +28,7 @@ function initSwipers() {
     // Carrousel des témoignages vidéos
     const videoTestimonialsSwiper = new Swiper('.videoTestimonialsSwiper', {
         slidesPerView: 1,
-        spaceBetween: 30,
+        spaceBetween: 20,
         loop: true,
         autoplay: {
             delay: 8000,
@@ -43,56 +45,36 @@ function initSwipers() {
         breakpoints: {
             768: {
                 slidesPerView: 2,
+                spaceBetween: 30,
             }
         }
     });
 }
 
-// Animation au scroll
-function animateOnScroll() {
-    const elements = document.querySelectorAll('[data-scroll]');
-    const windowHeight = window.innerHeight;
-    const windowTop = window.scrollY;
-    const windowBottom = windowTop + windowHeight;
-
-    elements.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top + windowTop;
-        const elementBottom = elementTop + element.offsetHeight;
-
-        // Vérifie si l'élément est dans la fenêtre visible
-        if (elementBottom >= windowTop && elementTop <= windowBottom) {
-            element.setAttribute('data-scroll', 'in');
-        }
-    });
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialisation des carrousels
-    initSwipers();
-
-    // Menu mobile
+// Gestion du menu mobile
+function setupMobileMenu() {
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
     
     menuToggle.addEventListener('click', function() {
         navLinks.classList.toggle('active');
-        this.classList.toggle('active');
         this.setAttribute(
             'aria-expanded', 
             this.getAttribute('aria-expanded') === 'true' ? 'false' : 'true'
         );
     });
 
-    // Fermer le menu quand on clique sur un lien
+    // Fermer le menu au clic sur un lien
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
-            menuToggle.classList.remove('active');
             menuToggle.setAttribute('aria-expanded', 'false');
         });
     });
+}
 
-    // Smooth scroll pour les ancres
+// Smooth scroll pour les ancres
+function setupSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             if (this.getAttribute('href') === '#') return;
@@ -102,23 +84,128 @@ document.addEventListener('DOMContentLoaded', function() {
             
             if (target) {
                 window.scrollTo({
-                    top: target.offsetTop - 80,
+                    top: target.offsetTop - 70, // Compensation pour le header fixe
                     behavior: 'smooth'
                 });
             }
         });
     });
+}
 
-    // Détection du clic en dehors du menu mobile pour le fermer
+// Fermer le menu en cliquant à l'extérieur
+function handleClickOutsideMenu() {
     document.addEventListener('click', function(e) {
-        if (!e.target.closest('.navbar') && navLinks.classList.contains('active')) {
+        const navbar = document.querySelector('.navbar');
+        const navLinks = document.querySelector('.nav-links');
+        const menuToggle = document.querySelector('.menu-toggle');
+        
+        if (!navbar.contains(e.target)) {
             navLinks.classList.remove('active');
-            menuToggle.classList.remove('active');
             menuToggle.setAttribute('aria-expanded', 'false');
         }
     });
+}
 
-    // Initialisation des animations au scroll
+// Animation au scroll
+function setupScrollAnimations() {
+    const animateOnScroll = function() {
+        const elements = document.querySelectorAll('[data-scroll]');
+        const windowHeight = window.innerHeight;
+        const windowTop = window.scrollY;
+        const windowBottom = windowTop + windowHeight;
+
+        elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top + windowTop;
+            const elementBottom = elementTop + element.offsetHeight;
+
+            if (elementBottom >= windowTop && elementTop <= windowBottom) {
+                element.setAttribute('data-scroll', 'in');
+            }
+        });
+    };
+
     window.addEventListener('scroll', animateOnScroll);
     animateOnScroll(); // Exécuter une fois au chargement
+}
+
+// Gestion de la FAQ
+function setupFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+            // Fermer les autres items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                }
+            });
+            
+            // Basculer l'item actuel
+            item.classList.toggle('active');
+            
+            // Accessibilité - gestion du focus
+            if (item.classList.contains('active')) {
+                const answer = item.querySelector('.faq-answer');
+                answer.setAttribute('aria-hidden', 'false');
+                question.setAttribute('aria-expanded', 'true');
+            } else {
+                answer.setAttribute('aria-hidden', 'true');
+                question.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Accessibilité - navigation au clavier
+        question.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                question.click();
+            }
+        });
+    });
+}
+
+// Initialisation au chargement
+document.addEventListener('DOMContentLoaded', function() {
+    initSwipers();
+    setupMobileMenu();
+    setupSmoothScroll();
+    handleClickOutsideMenu();
+    setupScrollAnimations();
+    setupFAQ();
+    
+    // Optimisation des performances
+    if ('IntersectionObserver' in window) {
+        setupLazyLoading();
+    }
 });
+
+// Chargement différé pour les images/iframes
+function setupLazyLoading() {
+    const lazyElements = document.querySelectorAll('[loading="lazy"]');
+    
+    if (lazyElements.length > 0) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    if (element.dataset.src) {
+                        element.src = element.dataset.src;
+                    }
+                    if (element.dataset.srcset) {
+                        element.srcset = element.dataset.srcset;
+                    }
+                    observer.unobserve(element);
+                }
+            });
+        }, {
+            rootMargin: '200px 0px' // Charge 200px avant d'entrer dans la vue
+        });
+
+        lazyElements.forEach(element => {
+            observer.observe(element);
+        });
+    }
+}
