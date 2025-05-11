@@ -490,57 +490,71 @@ p {
   margin-right: var(--space-sm);
 }
 
-/* Footer */
+/* ================ FOOTER ================ */
 .footer {
-  background: var(--marron-dark);
-  color: var(--white);
-  padding: var(--space-xl) 0 var(--space-md);
+    background: var(--marron-dark);
+    color: var(--white);
+    padding: var(--space-xl) 0;
+    text-align: center;
 }
 
 .footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md); /* Espacement entre les éléments */
 }
 
 .footer-logo {
-  display: flex;
-  align-items: center;
-  font-size: 1.5rem;
-  margin-bottom: var(--space-md);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
 }
 
-.footer-logo i {
-  color: var(--orange-light);
-  margin-right: var(--space-sm);
+.footer-whatsapp {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin: var(--space-sm) 0;
 }
 
-.footer-whatsapp .whatsapp-link {
-  display: flex;
-  align-items: center;
-  color: var(--white);
-  font-weight: 600;
+.whatsapp-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--white);
+    font-weight: 600;
 }
 
-.footer-whatsapp .whatsapp-link i {
-  color: var(--whatsapp);
-  margin-right: var(--space-sm);
-  font-size: 1.5rem;
+.whatsapp-link i {
+    color: var(--whatsapp);
+    font-size: 1.2rem;
 }
 
 .footer-legal {
-  width: 100%;
-  text-align: center;
-  margin-top: var(--space-lg);
-  padding-top: var(--space-md);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  font-size: 0.9rem;
+    margin-top: var(--space-md);
+    font-size: 0.9rem;
+    width: 100%;
 }
 
-.footer-legal a {
-  color: var(--white);
-  margin: 0 var(--space-sm);
+/* Version desktop - alignement horizontal */
+@media (min-width: 768px) {
+    .footer-content {
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .footer-logo,
+    .footer-whatsapp {
+        margin: 0 var(--space-md);
+    }
+    
+    .footer-legal {
+        flex-basis: 100%;
+        margin-top: var(--space-lg);
+    }
 }
 
 /* Bouton WhatsApp flottant */
