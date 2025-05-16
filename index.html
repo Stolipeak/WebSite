@@ -87,70 +87,85 @@
         </div>
     </section>
 
-    <!-- Section Commentaires Écrits -->
-    <section id="commentaires-ecrits" class="section comments-section">
-        <div class="container">
-            <h2 class="section-title" data-scroll="up">Nos avis clients</h2>
-            <div class="swiper commentsSwiper" data-scroll="up">
-                <div class="swiper-wrapper">
-                    <!-- Commentaire 1 -->
-                    <div class="swiper-slide" data-scroll="left">
-                        <div class="comment-card">
-                            <div class="comment-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <p class="comment-text">"Incroyablement efficace ! Après des mois d'attente infructueuse, j'ai eu une réponse positive en 3 semaines grâce à leur accompagnement sur WhatsApp."</p>
-                            <div class="comment-author">
-                                <strong>Marc D.</strong>
-                                <span>Lyon | 12/05/2024</span>
-                            </div>
+<section id="commentaires-ecrits" class="section comments-section">
+    <div class="container">
+        <h2 class="section-title" data-scroll="up">Nos avis clients</h2>
+        <div class="swiper commentsSwiper" id="autoSwiper" data-scroll="up">
+            <div class="swiper-wrapper">
+                <!-- Commentaire 1 -->
+                <div class="swiper-slide">
+                    <div class="comment-card">
+                        <div class="comment-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                         </div>
-                    </div>
-                    
-                    <!-- Commentaire 2 -->
-                    <div class="swiper-slide" data-scroll="up" data-scroll-delay="100">
-                        <div class="comment-card">
-                            <div class="comment-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <p class="comment-text">"Service client exceptionnel sur WhatsApp. Réponses rapides et conseils précis qui ont fait toute la différence pour mon dossier complexe."</p>
-                            <div class="comment-author">
-                                <strong>Sophie M.</strong>
-                                <span>Marseille | 08/05/2024</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Commentaire 3 -->
-                    <div class="swiper-slide" data-scroll="right">
-                        <div class="comment-card">
-                            <div class="comment-rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <p class="comment-text">"Je recommande à 100% ! La communication via WhatsApp était fluide et professionnelle. Mon logement obtenu en un temps record."</p>
-                            <div class="comment-author">
-                                <strong>Thomas L.</strong>
-                                <span>Toulouse | 03/05/2024</span>
-                            </div>
+                        <p class="comment-text">"J’ai eu mon logement en à peine un mois, comme promis. Très pro, je recommande à 100 % !"</p>
+                        <div class="comment-author">
+                            <strong>Sarah B.</strong>
+                            <span>Paris | 01/04/2024</span>
                         </div>
                     </div>
                 </div>
-                <div class="swiper-pagination"></div>
+
+                <!-- Commentaire 2 -->
+                <div class="swiper-slide" data-scroll="up">
+                    <div class="comment-card">
+                        <div class="comment-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="comment-text">"Mon dossier a été pris en main rapidement, j’ai eu les clés en 4 semaines. Merci Social Logement, vous avez changé ma vie."</p>
+                        <div class="comment-author">
+                            <strong>Karim D.</strong>
+                            <span>Montreuil | 26/03/2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commentaire 3-->
+                <div class="swiper-slide" data-scroll="right">
+                    <div class="comment-card">
+                        <div class="comment-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="comment-text">"Professionnels du début à la fin. J’ai eu mon logement social en 1 mois pile. Très satisfaite."</p>
+                        <div class="comment-author">
+                            <strong>Julie M.</strong>
+                            <span>Nice | 15/03/2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commentaire 4 -->
+                <div class="swiper-slide" data-scroll="left">
+                    <div class="comment-card">
+                        <div class="comment-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="comment-text">"Tout s’est passé sur WhatsApp, simple et rapide. Logement obtenu en moins de 30 jours."</p>
+                        <div class="comment-author">
+                            <strong>Yacine T.</strong>
+                            <span>Nanterre | 02/03/2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Commentaire 5 -->
+                <div class="swiper-slide" data-scroll="up">
+                    <div class="comment-card">
+                        <div class="comment-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <p class="comment-text">"Dossier traité en priorité, logement reçu dans les temps. Service fiable et très pro."</p>
+                        <div class="comment-author">
+                            <strong>Nadia L.</strong>
+                            <span>Clermont-Ferrand | 20/02/2024</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="swiper-pagination"></div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Section Témoignages Vidéos -->
     <section id="temoignages-videos" class="section video-testimonials-section">
