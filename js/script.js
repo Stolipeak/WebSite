@@ -1,6 +1,5 @@
-// Initialisation des carrousels Swiper
 function initSwipers() {
-    // Carrousel des commentaires
+    // 1. Carrousel des commentaires (inchangé)
     const commentsSwiper = new Swiper('.commentsSwiper', {
         slidesPerView: 1,
         spaceBetween: 20,
@@ -25,30 +24,36 @@ function initSwipers() {
         }
     });
 
-    // Carrousel des témoignages vidéos
-    const videoTestimonialsSwiper = new Swiper('.videoTestimonialsSwiper', {
-        slidesPerView: 1,
-        spaceBetween: 20,
-        loop: true,
-        autoplay: {
-            delay: 8000,
-            disableOnInteraction: false,
-        },
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-        breakpoints: {
-            768: {
-                slidesPerView: 2,
-                spaceBetween: 30,
-            }
+    // 2. Carrousel des témoignages vidéos avec correction
+const videoTestimonialsSwiper = new Swiper('.videoTestimonialsSwiper', {
+    slidesPerView: 1, // Changé de 2 à 1
+    spaceBetween: 20,
+    loop: true,
+    autoplay: {
+        delay: 8000,
+        disableOnInteraction: false,
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+    },
+    // Correction spécifique :
+    watchOverflow: true,
+    preventClicks: true,
+    preventClicksPropagation: true,
+    touchEventsTarget: 'wrapper',
+    breakpoints: {
+        768: {
+            slidesPerView: 1, // Changé de 2 à 1
+            spaceBetween: 30
         }
-    });
+    }
+});
+
 }
 
 // Gestion du menu mobile
