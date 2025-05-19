@@ -24,15 +24,11 @@ function initSwipers() {
         }
     });
 
-    // 2. Carrousel des témoignages vidéos avec correction
+// 2. Carrousel des témoignages vidéos (sans autoplay)
 const videoTestimonialsSwiper = new Swiper('.videoTestimonialsSwiper', {
-    slidesPerView: 1, // Changé de 2 à 1
+    slidesPerView: 1,
     spaceBetween: 20,
     loop: true,
-    autoplay: {
-        delay: 8000,
-        disableOnInteraction: false,
-    },
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
@@ -41,14 +37,13 @@ const videoTestimonialsSwiper = new Swiper('.videoTestimonialsSwiper', {
         el: '.swiper-pagination',
         clickable: true,
     },
-    // Correction spécifique :
     watchOverflow: true,
     preventClicks: true,
     preventClicksPropagation: true,
     touchEventsTarget: 'wrapper',
     breakpoints: {
         768: {
-            slidesPerView: 1, // Changé de 2 à 1
+            slidesPerView: 1,
             spaceBetween: 30
         }
     }
